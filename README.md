@@ -2,6 +2,11 @@
 
 ##Learning Competencies
 
+* Generating nested arrays and hashes with ruby
+* Using ruby's built-in methods to speed coding
+* Researching Array and Hash methods
+* Looping and conditions
+
 ##Summary
 
 In this challenge, let's start creating some data structures and better understand what's going on under the hood with arrays and hashes.
@@ -21,13 +26,9 @@ letter_grid = Array.new(5) { first_25_letters.shift(5) }
 
 Do you understand how the above code is working? If not, make a note to come back later so you understand passing blocks and the `shift` method.
 
-###Learning Goals
-* Generating nested arrays and hashes with ruby
-* Using ruby's built-in methods to speed coding
-* Researching Array and Hash methods
-* Looping and conditions
+##Releases
 
-###Tic-tac-toe Revisited - Populating a Board
+###Release 0 : Tic-tac-toe Revisited - Populating a Board
 
 Take a look at the simple 2 dimensional array for Tic-Tac-Toe from Nested Arrays. Let's say we wanted to generate 10 sample boards with x's and o's. How would you do that? How do you make the x's and o's random? In the first iteration, it's OK to create boards that don't have logical ratio of x's and o's.
 
@@ -36,7 +37,7 @@ Write some driver code with a test to make sure your method is working, and your
 **Extra Credit:** Go ahead and populate a board with a realistic ratio of x's and o's. There should only be either 5 x's or 4 o's or vice versa. There's an enumerable method that works on arrays that can help you! How could you write a good driver code test to make sure the array has the right number of x's and o's?
 
 
-###Convert nested array to hash
+###Release 1 : Convert nested array to hash
 
 Ruby provides a handy `Hash::[]` method which will convert a properly formatted array into a hash. [Documentation](http://www.ruby-doc.org/core-1.9.3/Hash.html#method-c-5B-5D).
 
@@ -78,9 +79,6 @@ puts hashed_roster[0]["Name"] == "Joe Schmo"   # outputs true
 
 Write some more driver code to test your new array of hashes!
 
-##Releases
-###Release 0
-
-##Optimize Your Learning
+<!-- ##Optimize Your Learning -->
 
 ##Resources
