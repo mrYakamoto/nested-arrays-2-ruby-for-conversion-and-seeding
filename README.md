@@ -34,7 +34,7 @@ Take a look at the simple 2 dimensional array for Tic-Tac-Toe from Nested Arrays
 
 Write an rspec test or two to make sure your method is working correctly. Since this is random, it can seem hard to test, but there are some things that are certain:
 
- * The board will definitely be 9x9
+ * The board will definitely be 3x3
  * The board will definitely be made up of x's and o's and _nothing else_
 
 Remember that rspec has [many kinds of matchers](https://www.relishapp.com/rspec/rspec-expectations/v/2-14/docs/built-in-matchers) built in.
