@@ -76,10 +76,10 @@ table_data = [
 
 convert_table(table_data)
 # => [
-  { "first_name" => "Elisabeth", "last_name" => "Gardenar", "city" => "Toledo", state => "OH" },
-  { "first_name" => "Jamaal", "last_name" => "Du", "city" => "Sylvania", state => "OH" },
-  { "first_name" => "Kathlyn", "last_name" => "Lavoie", "city" => "Maumee", state => "OH" }
-]
+#  { "first_name" => "Elisabeth", "last_name" => "Gardenar", "city" => "Toledo", state => "OH" },
+#  { "first_name" => "Jamaal", "last_name" => "Du", "city" => "Sylvania", state => "OH" },
+#  { "first_name" => "Kathlyn", "last_name" => "Lavoie", "city" => "Maumee", state => "OH" }
+# ]
 ```
 *Figure 4*.  Converting table data to an array of hashes.
 
