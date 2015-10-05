@@ -1,86 +1,100 @@
-# Nested Arrays 2 Ruby For Conversion And Seeding
+# Data Drill: Working with Arrays
 
-##Learning Competencies
+## Summary
+In this challenge, we're going to continue exploring Ruby arrays.  We'll look at different options for creating arrays filled with data, generate some nested arrays filled with data, and then convert a nested array to a collection of hashes.  All of this is designed to get us more comfortable working with these data structures.
 
-* Generating nested arrays and hashes with ruby
-* Using ruby's built-in methods to speed coding
-* Researching Array and Hash methods
-* Looping and conditions
+## Releases
+### Release 0: Instantiating Arrays
+```ruby
+numbers = Array.new
+# => []
+20.times { numbers << rand(5) }
+# => 20
+numbers
+# => [2, 3, 0, 1, 3, 4, 0, 1, 0, 1, 3, 4, 2, 4, 1, 3, 0, 3, 4, 2]
+```
+*Figure 1*. Building an array of 20 numbers.
 
-##Summary
-
-In this challenge, let's start creating some data structures and better understand what's going on under the hood with arrays and hashes.
-
-A powerful way to create an array is using the `Array.new` class method. Try this in IRB.
+When we work with arrays, we'll commonly create empty arrays and then add elements to them.  In Figure 1, for example, we create an empty array and then proceed to shovel twenty random numbers into it.
 
 ```ruby
-first_25_letters = ('A'..'Z').first(25)
-
-letter_grid = Array.new(5) { first_25_letters.shift(5) }
-# => [ ["A", "B", "C", "D", "E"],
-#      ["F", "G", "H", "I", "J"],
-#      ["K", "L", "M", "N", "O"],
-#      ["P", "Q", "R", "S", "T"],
-#      ["U", "V", "W", "X", "Y"] ]
+Array.new(5)
+# => [nil, nil, nil, nil, nil]
+Array.new(3, :a)
+# => [:a, :a, :a]
+Array.new(20) { rand(5) }
+# => [4, 4, 2, 1, 3, 4, 3, 0, 3, 0, 3, 4, 3, 1, 4, 3, 4, 3, 3, 2]
 ```
+*Figure 2.* Instantiating arrays of different sizes containing different elements.
 
-Do you understand how the above code is working? If not, make a note to come back later so you understand passing blocks and the `shift` method.
+When we instantiate a new array, Ruby allows us to define some attributes of the array.  This allows us to create arrays of data more succinctly than was done in Figure 1.  If we choose, we can specify the size that our array should be.  And, we can also define what the value of each element should be—in fact, there are two different ways for doing this.  (See Figure 2.)
 
-##Releases
-
-###Release 0 : Tic-tac-toe Revisited - Populating a Board
-
-Take a look at the simple 2 dimensional array for Tic-Tac-Toe from Nested Arrays. Let's say we wanted to generate 10 sample boards with x's and o's. How would you do that? How do you make the x's and o's random? In the first iteration, it's OK to create boards that don't have logical ratio of x's and o's.
-
-Write an rspec test or two to make sure your method is working correctly. Since this is random, it can seem hard to test, but there are some things that are certain:
-
- * The board will definitely be 3x3
- * The board will definitely be made up of x's and o's and _nothing else_
-
-Remember that rspec has [many kinds of matchers](https://www.relishapp.com/rspec/rspec-expectations/v/2-14/docs/built-in-matchers) built in.
-
-**Extra Credit:** Go ahead and populate a board with a realistic ratio of x's and o's. There should only be either 5 x's or 4 o's or vice versa. There's an enumerable method that works on arrays that can help you! How could you write a good test to make sure the array has the right number of x's and o's?
-
-
-###Release 1 : Convert nested array to hash
-
-Ruby provides a handy `Hash::[]` method which will convert a properly formatted array into a hash. [Documentation](http://www.ruby-doc.org/core-1.9.3/Hash.html#method-c-5B-5D).
-
-We want to convert each player entry from the data table array (shown below) into a hash.
 
 ```ruby
-roster = [["Number", "Name", "Position", "Points per Game"],
-         ["12","Joe Schmo","Center",[14, 32, 7, 0, 23] ],
-         ["9", "Ms. Buckets ", "Point Guard", [19, 0, 11, 22, 0] ],
-         ["31", "Harvey Kay", "Shooting Guard", [0, 30, 16, 0, 25] ],
-         ["7", "Sally Talls", "Power Forward ", [18, 29, 26, 31, 19] ],
-         ["22", "MK DiBoux ", "Small Forward ", [11, 0, 23, 17, 0] ]]
+Array.new(5, [1, 2, 3].sample)
+# => [1, 1, 1, 1, 1]
+Array.new(5) { [1, 2, 3].sample }
+# => [2, 2, 3, 1, 3]
 ```
+*Figure 3*. Creating arrays with five elements.
 
-Our goal is to write code that converts a data table array in the format above into an array formatted for the `Hash::[]` method. When we're done, we should be able to use it to create an array of hashes that looks something like:
+In Figure 3, we are generating arrays with five elements where each element is a one, two, or three.  We're using two different approaches.  Why are the outputs different?  In one approach, we pass the value we want for each element as the second argument to the `.new` method; in the other, we pass the value we want as a block.  What actually happens with each approach?
 
+Record the answer in the file `instantiating_arrays.md`.
+
+
+### Release 1: Generate a Populated Tic-tac-toe Board
 ```ruby
-[..., { "Number" => 31, "Name" => "Harvey Kay", "Position" => "Shooting Guard", "Points per Game" => [0, 30, 16, 0, 25] },...]
+generate_tic_tac_toe
+# => [["X", "O", "X"], ["O", "O", "X"], ["X", "X", "O"]]
+generate_tic_tac_toe
+# => [["O", "O", "X"], ["X", "X", "O"], ["O", "O", "X"]]
 ```
+*Figure 4*. Generating populated tic-tac-toe boards.
 
-####Break It Down
-Take a moment to read up in the [documentation](http://www.ruby-doc.org/core-1.9.3/Hash.html#method-c-5B-5D) to see the 3 formats that the `Hash::[]` method accepts.
+In the [data-drill-nested-arrays-challenge][] we wrote methods that returned one specific nested array. In this release, we'll again write a method that returns a nested array, but in this case, we want to add an element of randomness.
 
-Which format seems most convenient, given the nested array shown above? Test out the `Hash::[]` method with some test data in irb. How does your nested array need to change so it is the right format?
+We're going to write a method `generate_tic_tac_toe` that returns a nested array representing a tic-tac-toe board.  The board should be populated with X's and O's.  We can decide how realistic to make the boards (e.g., four of one letter and five of the other, only one winner, etc.).  The only rule is that the board needs to be fully populated with X's and O's.
+
+No tests have been provided for this method.  We'll need to write them ourselves.  Because there is an element of randomness to our method, it might seem difficult to test.  What do we know for sure about the boards we generate?
+
+- The board has three rows.
+- Each row has three columns.
+- The board only contains X's and O's—nothing else.
+
+*Note:*  Remember that RSpec has many different [matchers][built in matchers] built in.
 
 
-####Build a converter
-Create a method that can convert the nested array into an array of hashes. As an example:
-
+### Release 2: Convert a Nested Array of Table Data to a Hash
 ```ruby
-def convert_roster_format(roster)
-  # your code here
-  # should return a new format of roster which is an array of hashes
-end
+table_data = [
+  ["first_name", "last_name", "city", "state"],
+  ["Elisabeth", "Gardenar", "Toledo", "OH"],
+  ["Jamaal", "Du", "Sylvania", "OH"],
+  ["Kathlyn", "Lavoie", "Maumee", "OH"]
+]
 
-hashed_roster = convert_roster_format(my_roster)
-hashed_roster[2] #=> { "Number" => 31, "Name" => "Harvey Kay", "Position" => "Shooting Guard", "Points per Game" => [0, 30, 16, 0, 25] }
-hashed_roster[2]["Name"] #=> "Harvey Kay"
+convert_table(table_data)
+# => [
+#  { "first_name" => "Elisabeth", "last_name" => "Gardenar", "city" => "Toledo", state => "OH" },
+#  { "first_name" => "Jamaal", "last_name" => "Du", "city" => "Sylvania", state => "OH" },
+#  { "first_name" => "Kathlyn", "last_name" => "Lavoie", "city" => "Maumee", state => "OH" }
+# ]
 ```
+*Figure 4*.  Converting table data to an array of hashes.
 
-Your rspec tests will need to demonstrate that you can take an array in the original format and output an array of hashes that are correctly constructed. There are more than a few tests you can write to prove that your code is working correctly, so **make sure** you spend time brainstorming ways to prove that your code is correct. Just like in the professional world, _code without tests is not complete_.
+In this release we're going to convert a nested array into a collection of hashes.  In other words, we'll transform an array of arrays into an array of hashes.  Let's write a `convert_table` method that takes a nested array representing a data table and transforms each data row into a hash, using the table's header row data as keys (see Figure 4).
+
+We'll need to test our methods behavior.  Given a nested array that holds table data, what does our method return?  There are a number of tests that we can write to confirm that our method is behaving as we expect.  Our code is not complete without tests.
+
+
+*Hint:*  Ruby provides a handy `Hash::[]` method which converts a properly formatted array into a hash.  Take some time to read through the [documentation][Hash Documentation] on this method.  Note that the array we pass to the method can actually be formatted in different ways. Which format seems most convenient, given the table-like structure that we're working with?  As always, we can test out the `Hash::[]` method in IRB to see how it behaves.
+
+
+## Conclusion
+This challenge has given us practice working with arrays and hashes.  These are two fundamental data structures with which we need to be familiar.  We need to know how to instantiate them, manipulate them, transform them, access their values, etc.  Before moving on, let's be sure that we've answered any questions that popped up in this challenge.
+
+
+[built in matchers]: https://www.relishapp.com/rspec/rspec-expectations/v/2-14/docs/built-in-matchers
+[data-drill-nested-arrays-challenge]: ../../../data-drill-nested-arrays-challenge
+[Hash Documentation]: http://www.ruby-doc.org/core-1.9.3/Hash.html#method-c-5B-5D
